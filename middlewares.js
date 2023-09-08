@@ -1,4 +1,4 @@
-import { RATE_LIMIT, PRIOD, WHITELISTED_IPS } from "./config.js";
+import { RATE_LIMIT, PRIOD, WHITELISTED_IPS, PASSWORD } from "./config.js";
 
 const rateLimit = new Map();
 
@@ -7,6 +7,13 @@ function corsMiddleware(req, res, next) {
     res.header("Access-Control-Allow-Headers", "*");
     res.header("Access-Control-Allow-Methods", "*");
     next();
+};
+
+function authMiddleware(req, res, next) {
+    let password = req.header("Authorization");
+    if (password === PASSWORD) {
+        next();
+    }
 };
 
 async function rateLimitMiddleware(req, res, next) {
@@ -43,4 +50,4 @@ async function rateLimitMiddleware(req, res, next) {
     next();
 };
 
-export { corsMiddleware, rateLimitMiddleware }
+export { corsMiddleware, rateLimitMiddleware, authMiddleware }

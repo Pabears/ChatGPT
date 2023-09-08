@@ -1,4 +1,5 @@
 ## [Check the new Google Bard Chatbot!](https://github.com/PawanOsman/GoogleBard)
+
 ### If you have any questions or need assistance, please join [[Discord](https://discord.pawan.krd)]
 
 # Welcome to ChatGPT API _**FREE Reverse Proxy**_
@@ -67,6 +68,22 @@ http://localhost:3000/v1/completions
 http://localhost:3000/v1/chat/completions
 ```
 
+````
+curl --location 'http:///localhost:3000/v1/completions' \
+--header 'Authorization: changeme' \
+--header 'Content-Type: application/json' \
+--data '{
+    "model": "text-davinci-003",
+    "prompt": "Human: Hello\\nAI:",
+    "temperature": 0.7,
+    "max_tokens": 256,
+    "stop": [
+        "Human:",
+        "AI:"
+    ]
+}'
+```
+
 # Use Our Hosted API Reverse Proxy
 
 To use our hosted ChatGPT API, you can use the following steps:
@@ -79,7 +96,7 @@ To use our hosted ChatGPT API, you can use the following steps:
 
 ```txt
 https://api.pawan.krd/v1/completions
-```
+````
 
 ### Example: [OpenAI Docs](https://platform.openai.com/docs/api-reference/completions)
 
@@ -193,8 +210,8 @@ You need to add the following lines before your code to use the API:
 import { Configuration, OpenAIApi } from "openai";
 
 const configuration = new Configuration({
-	apiKey: "pk-**********************************************",
-	basePath: "https://api.pawan.krd/v1",
+  apiKey: "pk-**********************************************",
+  basePath: "https://api.pawan.krd/v1",
 });
 ```
 
@@ -204,21 +221,21 @@ Example code:
 import { Configuration, OpenAIApi } from "openai";
 
 const configuration = new Configuration({
-	apiKey: "pk-**********************************************",
-	basePath: "https://api.pawan.krd/v1",
+  apiKey: "pk-**********************************************",
+  basePath: "https://api.pawan.krd/v1",
 });
 
 const openai = new OpenAIApi(configuration);
 
 const response = await openai.createCompletion({
-	model: "text-davinci-003",
-	prompt: "Human: Hello\nAI:",
-	temperature: 0.7,
-	max_tokens: 256,
-	top_p: 1,
-	frequency_penalty: 0,
-	presence_penalty: 0,
-	stop: ["Human: ", "AI: "],
+  model: "text-davinci-003",
+  prompt: "Human: Hello\nAI:",
+  temperature: 0.7,
+  max_tokens: 256,
+  top_p: 1,
+  frequency_penalty: 0,
+  presence_penalty: 0,
+  stop: ["Human: ", "AI: "],
 });
 
 console.log(response.data.choices[0].text);

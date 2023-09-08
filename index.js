@@ -1,6 +1,6 @@
 import express, { json, urlencoded } from 'express';
 import { completions, chatCompletions } from './routes.js';
-import { corsMiddleware, rateLimitMiddleware } from './middlewares.js';
+import { corsMiddleware, rateLimitMiddleware, authMiddleware } from './middlewares.js';
 import { DEBUG, SERVER_PORT } from './config.js';
 
 let app = express();
@@ -10,6 +10,7 @@ process.on("uncaughtException", function (err) {
 });
 
 // Middlewares
+app.use(authMiddleware)
 app.use(corsMiddleware);
 app.use(rateLimitMiddleware);
 app.use(json());

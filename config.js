@@ -11,6 +11,13 @@ export const RATE_LIMIT = 50; // 50 requests per 15 seconds
 
 // Basic password for security
 export const PASSWORD = "changeme";
+
+
+//tls
+export const CERT = "path";
+export const KEY = "path";
+
+
 // Whitelisted IPs
 export const WHITELISTED_IPS = [
     // "127.0.0.1"

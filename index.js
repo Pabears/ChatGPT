@@ -1,7 +1,10 @@
 import express, { json, urlencoded } from 'express';
 import { completions, chatCompletions } from './routes.js';
 import { corsMiddleware, rateLimitMiddleware, authMiddleware } from './middlewares.js';
-import { DEBUG, SERVER_PORT } from './config.js';
+import { DEBUG, SERVER_PORT, CERT, KEY } from './config.js';
+import { readFileSync } from 'fs';
+import { createServer } from 'https';
+
 
 let app = express();
 
@@ -28,7 +31,12 @@ app.all("/", async function (req, res) {
 app.post("/v1/completions", completions);
 app.post("/v1/chat/completions", chatCompletions);
 
-// Start server
-app.listen(SERVER_PORT, () => {
-    console.log(`Listening on ${SERVER_PORT} ...`);
-});
+// // Start server
+// app.listen(SERVER_PORT, () => {
+//     console.log(`Listening on ${SERVER_PORT} ...`);
+// });
+
+createServer({
+    cert: fs.readFileSync(CERT),
+    key: fs.readFileSync(KEY),
+}, app).listen(SERVER_PORT);

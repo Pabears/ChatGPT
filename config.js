@@ -9,6 +9,9 @@ export const MODERATION = true; // Moderation mode
 export const PRIOD = 15 * 1000; // 15 seconds
 export const RATE_LIMIT = 50; // 50 requests per 15 seconds
 
+// Basic password for security
+// export const PASSWORD = "changeme"; // 50 requests per 15 seconds
+
 // Whitelisted IPs
 export const WHITELISTED_IPS = [
     // "127.0.0.1"
